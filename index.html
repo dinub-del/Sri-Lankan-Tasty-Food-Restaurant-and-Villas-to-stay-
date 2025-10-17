@@ -1,1 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sri Lankan Tasty Food - Restaurant and Villas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo-container">
+            <div class="logo"></div>
+            <div class="site-title">Sri Lankan Tasty Food</div>
+        </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="villas.html">Villas</a></li>
+            <li><a href="culture.html">Culture</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="cart-icon" onclick="toggleCart()">
+            🛒
+            <span class="cart-count" id="cartCount">0</span>
+        </div>
+    </nav>
 
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Welcome to Sri Lankan Tasty Food</h1>
+        <p>Experience authentic Sri Lankan cuisine and hospitality. Taste our delicious dishes and stay in beautiful villas immersed in our rich culture.</p>
+        <div class="hero-buttons">
+            <a href="menu.html" class="btn btn-primary">Explore Food</a>
+            <a href="villas.html" class="btn btn-secondary">Discover Villas</a>
+            <a href="contact.html" class="btn btn-primary">Book Now</a>
+        </div>
+    </section>
+
+    <!-- Featured Menu Preview -->
+    <section class="section">
+        <h2>Featured Dishes</h2>
+        <div class="menu-grid">
+            <div class="menu-item" onclick="window.location.href='menu.html'">
+                <img src="images/Chicken-Curry.jpg" alt="Chicken Curry">
+                <div class="menu-item-content">
+                    <h3>Chicken Curry</h3>
+                    <p class="menu-item-description">A rich, aromatic curry made with tender chicken pieces simmered in coconut milk and traditional Sri Lankan spices</p>
+                    <div class="price">LKR 1,500</div>
+                    <a href="menu.html" class="btn btn-primary">View Full Menu</a>
+                </div>
+            </div>
+
+            <div class="menu-item" onclick="window.location.href='menu.html'">
+                <img src="images/Kottu-Roti.jpg" alt="Kottu Roti">
+                <div class="menu-item-content">
+                    <h3>Kottu Roti</h3>
+                    <p class="menu-item-description">Sri Lanka's famous street food with chopped roti, vegetables, egg, and your choice of meat, stir-fried with spices</p>
+                    <div class="price">LKR 1,200</div>
+                    <a href="menu.html" class="btn btn-primary">View Full Menu</a>
+                </div>
+            </div>
+
+            <div class="menu-item" onclick="window.location.href='menu.html'">
+                <img src="images/Biriyani.jpg" alt="Biriyani">
+                <div class="menu-item-content">
+                    <h3>Sri Lankan Biriyani</h3>
+                    <p class="menu-item-description">Fragrant basmati rice layered with spiced meat, boiled eggs, and cashews, served with raita and curry</p>
+                    <div class="price">LKR 1,600</div>
+                    <a href="menu.html" class="btn btn-primary">View Full Menu</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Villas Preview -->
+    <section class="section">
+        <h2>Featured Villas</h2>
+        <div class="villa-grid">
+            <div class="villa-card">
+                <img src="images/Villa-in-Talpe.webp" alt="Villa in Talpe">
+                <div class="villa-content">
+                    <h3>Villa in Talpe</h3>
+                    <p class="villa-details">Beachfront luxury villa with stunning ocean views and direct beach access. Perfect for romantic getaways.</p>
+                    <div class="villa-features">
+                        <span class="feature-badge">3 Bedrooms</span>
+                        <span class="feature-badge">Ocean View</span>
+                        <span class="feature-badge">Private Pool</span>
+                    </div>
+                    <div class="price">LKR 35,000 / night</div>
+                    <a href="villas.html" class="btn btn-secondary">View All Villas</a>
+                </div>
+            </div>
+
+            <div class="villa-card">
+                <img src="images/98 Acres Resort & Spa.avif" alt="98 Acres Resort">
+                <div class="villa-content">
+                    <h3>98 Acres Resort & Spa</h3>
+                    <p class="villa-details">Award-winning eco-resort surrounded by tea estates. Features spa, organic dining, and nature trails.</p>
+                    <div class="villa-features">
+                        <span class="feature-badge">Luxury Suite</span>
+                        <span class="feature-badge">Spa</span>
+                        <span class="feature-badge">Eco-Friendly</span>
+                    </div>
+                    <div class="price">LKR 48,000 / night</div>
+                    <a href="villas.html" class="btn btn-secondary">View All Villas</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Sri Lankan Tasty Food - Restaurant and Villas. All rights reserved.</p>
+        <p>Experience authentic Sri Lankan cuisine and hospitality</p>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <span style="cursor: pointer; font-size: 1.5rem;" onclick="toggleCart()">&times;</span>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p style="text-align: center; color: #666; padding: 2rem;">Your cart is empty</p>
+        </div>
+        <div class="cart-total">
+            Total: <span id="cartTotalAmount">LKR 0</span>
+        </div>
+        <div style="padding: 1rem;">
+            <button class="btn btn-primary" style="width: 100%;" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
