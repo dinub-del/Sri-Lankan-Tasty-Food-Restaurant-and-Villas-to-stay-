@@ -1,1 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Menu - Sri Lankan Tasty Food</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo-container">
+            <div class="logo"></div>
+            <div class="site-title">Sri Lankan Tasty Food</div>
+        </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="villas.html">Villas</a></li>
+            <li><a href="culture.html">Culture</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="cart-icon" onclick="toggleCart()">
+            🛒
+            <span class="cart-count" id="cartCount">0</span>
+        </div>
+    </nav>
 
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <h1>Our Authentic Sri Lankan Menu</h1>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="section">
+        <h2>Traditional Sri Lankan Dishes</h2>
+        <div class="menu-grid">
+            <div class="menu-item" onclick="openFoodModal('chicken-curry')">
+                <img src="images/Chicken-Curry.jpg" alt="Chicken Curry">
+                <div class="menu-item-content">
+                    <h3>Chicken Curry</h3>
+                    <p class="menu-item-description">A rich, aromatic curry made with tender chicken pieces simmered in coconut milk and traditional Sri Lankan spices</p>
+                    <div class="price">LKR 1,500</div>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item" onclick="openFoodModal('prawns-curry')">
+                <img src="images/Prawns-Garlic-Curry.jpg" alt="Prawns Garlic Curry">
+                <div class="menu-item-content">
+                    <h3>Prawns Garlic Curry</h3>
+                    <p class="menu-item-description">Fresh prawns cooked in a fragrant garlic-infused curry sauce with a perfect blend of coastal spices</p>
+                    <div class="price">LKR 2,200</div>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item" onclick="openFoodModal('lamprais')">
+                <img src="images/lamprais.jpg" alt="Lamprais">
+                <div class="menu-item-content">
+                    <h3>Lamprais</h3>
+                    <p class="menu-item-description">A Dutch-Burgher delicacy featuring rice, meat curry, and accompaniments wrapped and baked in banana leaf</p>
+                    <div class="price">LKR 1,800</div>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item" onclick="openFoodModal('kottu')">
+                <img src="images/Kottu-Roti.jpg" alt="Kottu Roti">
+                <div class="menu-item-content">
+                    <h3>Kottu Roti</h3>
+                    <p class="menu-item-description">Sri Lanka's famous street food with chopped roti, vegetables, egg, and your choice of meat, stir-fried with spices</p>
+                    <div class="price">LKR 1,200</div>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item" onclick="openFoodModal('devilled')">
+                <img src="images/Devilled.jpg" alt="Devilled Chicken">
+                <div class="menu-item-content">
+                    <h3>Devilled Chicken</h3>
+                    <p class="menu-item-description">Spicy, tangy stir-fried chicken with bell peppers, onions, and chili sauce - a Sri Lankan-Chinese fusion favorite</p>
+                    <div class="price">LKR 1,400</div>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="menu-item" onclick="openFoodModal('biriyani')">
+                <img src="images/Biriyani.jpg" alt="Biriyani">
+                <div class="menu-item-content">
+                    <h3>Sri Lankan Biriyani</h3>
+                    <p class="menu-item-description">Fragrant basmati rice layered with spiced meat, boiled eggs, and cashews, served with raita and curry</p>
+                    <div class="price">LKR 1,600</div>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Sri Lankan Tasty Food - Restaurant and Villas. All rights reserved.</p>
+        <p>Experience authentic Sri Lankan cuisine and hospitality</p>
+    </footer>
+
+    <!-- Food Modal -->
+    <div id="foodModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeFoodModal()">&times;</span>
+            <img id="modalFoodImage" class="modal-image" src="" alt="">
+            <h3 id="modalFoodName"></h3>
+            <p id="modalFoodDescription" style="color: #666; font-style: italic; margin-bottom: 1rem;"></p>
+            
+            <div class="price" id="modalFoodPrice"></div>
+            
+            <div class="quantity-control">
+                <label style="font-weight: 600;">Quantity:</label>
+                <button class="quantity-btn" onclick="decreaseQuantity()">-</button>
+                <span class="quantity-value" id="quantityValue">1</span>
+                <button class="quantity-btn" onclick="increaseQuantity()">+</button>
+            </div>
+
+            <div class="extras-section">
+                <h4 style="color: #003049; margin-bottom: 1rem;">Add Extra Items:</h4>
+                <div class="extra-item">
+                    <input type="checkbox" id="extra1" value="200">
+                    <label for="extra1">Extra Rice</label>
+                    <span class="extra-price">+LKR 200</span>
+                </div>
+                <div class="extra-item">
+                    <input type="checkbox" id="extra2" value="150">
+                    <label for="extra2">Papadam (4 pieces)</label>
+                    <span class="extra-price">+LKR 150</span>
+                </div>
+                <div class="extra-item">
+                    <input type="checkbox" id="extra3" value="100">
+                    <label for="extra3">Extra Egg</label>
+                    <span class="extra-price">+LKR 100</span>
+                </div>
+                <div class="extra-item">
+                    <input type="checkbox" id="extra4" value="250">
+                    <label for="extra4">Coconut Sambol</label>
+                    <span class="extra-price">+LKR 250</span>
+                </div>
+                <div class="extra-item">
+                    <input type="checkbox" id="extra5" value="180">
+                    <label for="extra5">Dhal Curry</label>
+                    <span class="extra-price">+LKR 180</span>
+                </div>
+                <div class="extra-item">
+                    <input type="checkbox" id="extra6" value="300">
+                    <label for="extra6">Spicy Sauce</label>
+                    <span class="extra-price">+LKR 300</span>
+                </div>
+            </div>
+
+            <div style="margin-top: 2rem; padding-top: 1rem; border-top: 2px solid #ddd;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                    <strong>Total:</strong>
+                    <strong style="color: #D62828; font-size: 1.3rem;" id="modalTotal">LKR 0</strong>
+                </div>
+                <button class="btn btn-primary" style="width: 100%;" onclick="addToCart()">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <span style="cursor: pointer; font-size: 1.5rem;" onclick="toggleCart()">&times;</span>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p style="text-align: center; color: #666; padding: 2rem;">Your cart is empty</p>
+        </div>
+        <div class="cart-total">
+            Total: <span id="cartTotalAmount">LKR 0</span>
+        </div>
+        <div style="padding: 1rem;">
+            <button class="btn btn-primary" style="width: 100%;" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
