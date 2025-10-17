@@ -1,1 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Villas - Sri Lankan Tasty Food</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo-container">
+            <div class="logo"></div>
+            <div class="site-title">Sri Lankan Tasty Food</div>
+        </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="villas.html">Villas</a></li>
+            <li><a href="culture.html">Culture</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="cart-icon" onclick="toggleCart()">
+            🛒
+            <span class="cart-count" id="cartCount">0</span>
+        </div>
+    </nav>
 
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <h1>Luxury Villas in Paradise</h1>
+    </section>
+
+    <!-- Villas Section -->
+    <section class="section">
+        <h2>Our Exclusive Villa Collection</h2>
+        <div class="villa-grid">
+            <div class="villa-card">
+                <img src="images/Villa-in-Talpe.webp" alt="Villa in Talpe">
+                <div class="villa-content">
+                    <h3>Villa in Talpe</h3>
+                    <p class="villa-details">Beachfront luxury villa with stunning ocean views and direct beach access. Perfect for romantic getaways.</p>
+                    <div class="villa-features">
+                        <span class="feature-badge">3 Bedrooms</span>
+                        <span class="feature-badge">Ocean View</span>
+                        <span class="feature-badge">Private Pool</span>
+                        <span class="feature-badge">Beach Access</span>
+                    </div>
+                    <div class="price">LKR 35,000 / night</div>
+                    <button class="btn btn-secondary" onclick="openVillaModal('talpe')">Book Villa</button>
+                </div>
+            </div>
+
+            <div class="villa-card">
+                <img src="images/Marabedda-Garden-Resort-Kandy.jpg" alt="Marabedda Garden Resort">
+                <div class="villa-content">
+                    <h3>Marabedda Garden Resort, Kandy</h3>
+                    <p class="villa-details">Nestled in lush tea plantations with breathtaking mountain views. Experience authentic hill country hospitality.</p>
+                    <div class="villa-features">
+                        <span class="feature-badge">4 Bedrooms</span>
+                        <span class="feature-badge">Mountain View</span>
+                        <span class="feature-badge">Garden</span>
+                        <span class="feature-badge">Tea Plantation</span>
+                    </div>
+                    <div class="price">LKR 42,000 / night</div>
+                    <button class="btn btn-secondary" onclick="openVillaModal('kandy')">Book Villa</button>
+                </div>
+            </div>
+
+            <div class="villa-card">
+                <img src="images/Villa-in-Unawatuna.webp" alt="Villa in Unawatuna">
+                <div class="villa-content">
+                    <h3>Villa in Unawatuna</h3>
+                    <p class="villa-details">Modern villa steps away from the golden beaches of Unawatuna. Ideal for families and groups.</p>
+                    <div class="villa-features">
+                        <span class="feature-badge">5 Bedrooms</span>
+                        <span class="feature-badge">Near Beach</span>
+                        <span class="feature-badge">BBQ Area</span>
+                        <span class="feature-badge">Large Garden</span>
+                    </div>
+                    <div class="price">LKR 38,000 / night</div>
+                    <button class="btn btn-secondary" onclick="openVillaModal('unawatuna')">Book Villa</button>
+                </div>
+            </div>
+
+            <div class="villa-card">
+                <img src="images/Private-Villa.jpg" alt="Private Villa">
+                <div class="villa-content">
+                    <h3>Exclusive Private Villa</h3>
+                    <p class="villa-details">Secluded luxury villa with infinity pool and panoramic views. Complete privacy and personalized service.</p>
+                    <div class="villa-features">
+                        <span class="feature-badge">6 Bedrooms</span>
+                        <span class="feature-badge">Infinity Pool</span>
+                        <span class="feature-badge">Butler Service</span>
+                        <span class="feature-badge">Spa</span>
+                    </div>
+                    <div class="price">LKR 55,000 / night</div>
+                    <button class="btn btn-secondary" onclick="openVillaModal('private')">Book Villa</button>
+                </div>
+            </div>
+
+            <div class="villa-card">
+                <img src="images/98 Acres Resort & Spa.avif" alt="98 Acres Resort">
+                <div class="villa-content">
+                    <h3>98 Acres Resort & Spa</h3>
+                    <p class="villa-details">Award-winning eco-resort surrounded by tea estates. Features spa, organic dining, and nature trails.</p>
+                    <div class="villa-features">
+                        <span class="feature-badge">Luxury Suite</span>
+                        <span class="feature-badge">Spa</span>
+                        <span class="feature-badge">Eco-Friendly</span>
+                        <span class="feature-badge">Restaurant</span>
+                    </div>
+                    <div class="price">LKR 48,000 / night</div>
+                    <button class="btn btn-secondary" onclick="openVillaModal('98acres')">Book Villa</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Sri Lankan Tasty Food - Restaurant and Villas. All rights reserved.</p>
+        <p>Experience authentic Sri Lankan cuisine and hospitality</p>
+    </footer>
+
+    <!-- Villa Modal -->
+    <div id="villaModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeVillaModal()">&times;</span>
+            <img id="modalVillaImage" class="modal-image" src="" alt="">
+            <h3 id="modalVillaName"></h3>
+            <p id="modalVillaDescription" style="color: #666; margin-bottom: 1rem;"></p>
+            
+            <div class="price" id="modalVillaPrice"></div>
+
+            <form class="booking-form" onsubmit="bookVilla(event)">
+                <div class="form-group">
+                    <label>Check-in Date *</label>
+                    <input type="date" required id="checkinDate">
+                </div>
+                <div class="form-group">
+                    <label>Check-out Date *</label>
+                    <input type="date" required id="checkoutDate">
+                </div>
+                <div class="form-group">
+                    <label>Number of Guests *</label>
+                    <select required id="numGuests">
+                        <option value="">Select number of guests</option>
+                        <option value="1">1 Guest</option>
+                        <option value="2">2 Guests</option>
+                        <option value="3">3 Guests</option>
+                        <option value="4">4 Guests</option>
+                        <option value="5">5 Guests</option>
+                        <option value="6">6 Guests</option>
+                        <option value="7">7 Guests</option>
+                        <option value="8">8 Guests</option>
+                        <option value="9">9 Guests</option>
+                        <option value="10">10+ Guests</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Your Name *</label>
+                    <input type="text" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label>Email Address *</label>
+                    <input type="email" required placeholder="your.email@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Phone Number *</label>
+                    <input type="tel" required placeholder="+94 XX XXX XXXX">
+                </div>
+                <div class="form-group">
+                    <label>Special Requests</label>
+                    <textarea rows="3" placeholder="Any special requirements or requests..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-secondary" style="width: 100%;">Confirm Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <span style="cursor: pointer; font-size: 1.5rem;" onclick="toggleCart()">&times;</span>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p style="text-align: center; color: #666; padding: 2rem;">Your cart is empty</p>
+        </div>
+        <div class="cart-total">
+            Total: <span id="cartTotalAmount">LKR 0</span>
+        </div>
+        <div style="padding: 1rem;">
+            <button class="btn btn-primary" style="width: 100%;" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
