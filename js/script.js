@@ -186,6 +186,37 @@ function addToCart() {
             price: parseInt(checkbox.value)
         });
     });
+}
+
+// Initialize date constraints for villa booking
+function initDateConstraints() {
+    const checkinDate = document.getElementById('checkinDate');
+    
+    if (checkinDate) {
+        checkinDate.addEventListener('change', function() {
+            const checkoutDate = document.getElementById('checkoutDate');
+            if (checkoutDate) {
+                const checkin = new Date(this.value);
+                checkin.setDate(checkin.getDate() + 1);
+                checkoutDate.min = checkin.toISOString().split('T')[0];
+            }
+        });
+    }
+}
+
+// Cart persistence using in-memory storage
+function saveCart() {
+    // Store cart in memory (could be enhanced with API calls)
+    window.cartData = cart;
+}
+
+function loadCart() {
+    // Load cart from memory
+    if (window.cartData) {
+        cart = window.cartData;
+    }
+    updateCart();
+}
 
     const totalPrice = parseInt(document.getElementById('modalTotal').textContent.replace(/[^0-9]/g, ''));
 
