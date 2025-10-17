@@ -1,34 +1,4 @@
-function closeVillaModal() {
-    const modal = document.getElementById('villaModal');
-    if (modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
-}
-
-function bookVilla(event) {
-    event.preventDefault();
-    const checkin = document.getElementById('checkinDate').value;
-    const checkout = document.getElementById('checkoutDate').value;
-    const guests = document.getElementById('numGuests').value;
-    const name = event.target.querySelector('input[type="text"]').value;
-    
-    // Get selected amenities
-    const selectedAmenities = [];
-    document.querySelectorAll('#villaAmenities input[type="checkbox"]:checked').forEach(checkbox => {
-        selectedAmenities.push(checkbox.dataset.name);
-    });
-    
-    // Calculate nights
-    const checkinDate = new Date(checkin);
-    const checkoutDate = new Date(checkout);
-    const nights = Math.max(1, Math.ceil((checkoutDate - checkinDate) / (1000 * 60 * 60 * 24)));
-    
-    const total = document.getElementById('villaTotal').textContent;
-    
-    let amenitiesText = selectedAmenities.length > 0 ? '\n\nSelected Services:\n• ' + selectedAmenities.join('\n• ') : '';
-    
-    alert(`🏖️ Villa Booking Request Submitted!\n\n${currentVilla.name}\n\nGuest: ${name}\nCheck-in: ${checkin}\nCheck-out: ${checkout}\nNights: ${// Sri Lankan Tasty Food - Main JavaScript
+// Sri Lankan Tasty Food - Main JavaScript
 
 // Food data with specific extras for each dish
 const foodItems = {
@@ -195,6 +165,7 @@ const villaData = {
 // Cart management
 let cart = [];
 let currentFood = null;
+let currentVilla = null;
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
@@ -209,9 +180,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize date constraints for villa booking
     initDateConstraints();
-    
-    // Add event listeners to extra checkboxes
-    initExtraCheckboxes();
 });
 
 // Set active navigation link based on current page
@@ -308,60 +276,16 @@ function updateModalTotal() {
     document.getElementById('modalTotal').textContent = `LKR ${total.toLocaleString()}`;
 }
 
-function initExtraCheckboxes() {
-    document.querySelectorAll('.extra-item input[type="checkbox"]').forEach(checkbox => {
-        checkbox.addEventListener('change', updateModalTotal);
-    });
-}
-
 function addToCart() {
     const quantity = parseInt(document.getElementById('quantityValue').textContent);
     const extras = [];
     
     document.querySelectorAll('.extra-item input[type="checkbox"]:checked').forEach(checkbox => {
         extras.push({
-            name: checkbox.nextElementSibling.textContent,
+            name: checkbox.dataset.name,
             price: parseInt(checkbox.value)
         });
     });
-}
-
-// Initialize date constraints for villa booking
-function initDateConstraints() {
-    const checkinDate = document.getElementById('checkinDate');
-    const checkoutDate = document.getElementById('checkoutDate');
-    
-    if (checkinDate) {
-        checkinDate.addEventListener('change', function() {
-            if (checkoutDate) {
-                const checkin = new Date(this.value);
-                checkin.setDate(checkin.getDate() + 1);
-                checkoutDate.min = checkin.toISOString().split('T')[0];
-                updateVillaTotal();
-            }
-        });
-    }
-    
-    if (checkoutDate) {
-        checkoutDate.addEventListener('change', function() {
-            updateVillaTotal();
-        });
-    }
-}
-
-// Cart persistence using in-memory storage
-function saveCart() {
-    // Store cart in memory (could be enhanced with API calls)
-    window.cartData = cart;
-}
-
-function loadCart() {
-    // Load cart from memory
-    if (window.cartData) {
-        cart = window.cartData;
-    }
-    updateCart();
-}
 
     const totalPrice = parseInt(document.getElementById('modalTotal').textContent.replace(/[^0-9]/g, ''));
 
@@ -378,8 +302,9 @@ function loadCart() {
     updateCart();
     closeFoodModal();
     
-    // Show success message
-    alert(`${currentFood.name} added to cart!`);
+    // Show success message with details
+    let extrasText = extras.length > 0 ? '\nExtras: ' + extras.map(e => e.name).join(', ') : '';
+    alert(`✅ ${currentFood.name} added to cart!\n\nQuantity: ${quantity}${extrasText}\n\nTotal: LKR ${totalPrice.toLocaleString()}`);
 }
 
 function updateCart() {
@@ -444,8 +369,6 @@ function checkout() {
 }
 
 // Villa modal functions
-let currentVilla = null;
-
 function openVillaModal(villaId) {
     currentVilla = villaData[villaId];
     const modal = document.getElementById('villaModal');
@@ -532,6 +455,7 @@ function closeVillaModal() {
     const modal = document.getElementById('villaModal');
     if (modal) {
         modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
     }
 }
 
@@ -540,8 +464,25 @@ function bookVilla(event) {
     const checkin = document.getElementById('checkinDate').value;
     const checkout = document.getElementById('checkoutDate').value;
     const guests = document.getElementById('numGuests').value;
+    const name = event.target.querySelector('input[type="text"]').value;
     
-    alert(`Villa booking request submitted!\n\nCheck-in: ${checkin}\nCheck-out: ${checkout}\nGuests: ${guests}\n\nWe will contact you shortly to confirm your reservation.`);
+    // Get selected amenities
+    const selectedAmenities = [];
+    document.querySelectorAll('#villaAmenities input[type="checkbox"]:checked').forEach(checkbox => {
+        selectedAmenities.push(checkbox.dataset.name);
+    });
+    
+    // Calculate nights
+    const checkinDate = new Date(checkin);
+    const checkoutDate = new Date(checkout);
+    const nights = Math.max(1, Math.ceil((checkoutDate - checkinDate) / (1000 * 60 * 60 * 24)));
+    
+    const total = document.getElementById('villaTotal').textContent;
+    
+    let amenitiesText = selectedAmenities.length > 0 ? '\n\nSelected Services:\n• ' + selectedAmenities.join('\n• ') : '';
+    
+    alert(`🏖️ Villa Booking Request Submitted!\n\n${currentVilla.name}\n\nGuest: ${name}\nCheck-in: ${checkin}\nCheck-out: ${checkout}\nNights: ${nights}\nGuests: ${guests}${amenitiesText}\n\nEstimated Total: ${total}\n\nWe will contact you shortly to confirm your reservation!`);
+    
     closeVillaModal();
     event.target.reset();
 }
@@ -577,3 +518,41 @@ function initSmoothScroll() {
             }
         });
     });
+}
+
+// Initialize date constraints for villa booking
+function initDateConstraints() {
+    const checkinDate = document.getElementById('checkinDate');
+    const checkoutDate = document.getElementById('checkoutDate');
+    
+    if (checkinDate) {
+        checkinDate.addEventListener('change', function() {
+            if (checkoutDate) {
+                const checkin = new Date(this.value);
+                checkin.setDate(checkin.getDate() + 1);
+                checkoutDate.min = checkin.toISOString().split('T')[0];
+                updateVillaTotal();
+            }
+        });
+    }
+    
+    if (checkoutDate) {
+        checkoutDate.addEventListener('change', function() {
+            updateVillaTotal();
+        });
+    }
+}
+
+// Cart persistence using in-memory storage
+function saveCart() {
+    // Store cart in memory (could be enhanced with API calls)
+    window.cartData = cart;
+}
+
+function loadCart() {
+    // Load cart from memory
+    if (window.cartData) {
+        cart = window.cartData;
+    }
+    updateCart();
+}
