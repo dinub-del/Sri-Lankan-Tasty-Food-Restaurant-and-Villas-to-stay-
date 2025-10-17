@@ -1,1 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Sri Lankan Tasty Food</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo-container">
+            <div class="logo"></div>
+            <div class="site-title">Sri Lankan Tasty Food</div>
+        </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="villas.html">Villas</a></li>
+            <li><a href="culture.html">Culture</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="cart-icon" onclick="toggleCart()">
+            🛒
+            <span class="cart-count" id="cartCount">0</span>
+        </div>
+    </nav>
 
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <h1>Get in Touch</h1>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section">
+        <h2>Contact Us</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                <div class="contact-item">
+                    <strong>Address:</strong><br>
+                    123 Galle Road, Colombo 03<br>
+                    Sri Lanka
+                </div>
+                <div class="contact-item">
+                    <strong>Phone:</strong><br>
+                    +94 11 234 5678
+                </div>
+                <div class="contact-item">
+                    <strong>Email:</strong><br>
+                    info@srilankantastyfood.lk
+                </div>
+                <div class="contact-item">
+                    <strong>Hours:</strong><br>
+                    Restaurant: 11:00 AM - 11:00 PM Daily<br>
+                    Villas: 24/7 Check-in Available
+                </div>
+
+                <h3 style="margin-top: 2rem;">Our Team</h3>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <img src="images/Dinusha-Pic.jpg" alt="Dinusha Bernard">
+                        <h4>Dinusha Bernard</h4>
+                        <div class="role">Founder & Head Chef</div>
+                        <p>Passionate about bringing authentic Sri Lankan flavors to the world</p>
+                    </div>
+                </div>
+
+                <h4 style="margin-top: 2rem; color: #003049;">Management Team</h4>
+                <div style="margin-top: 1rem;">
+                    <p><strong>Nuwan Perera</strong> - Operations Manager<br>
+                    <em>15 years in hospitality management</em></p>
+                    
+                    <p><strong>Sandali Fernando</strong> - Villa Coordinator<br>
+                    <em>Expert in luxury accommodations</em></p>
+                    
+                    <p><strong>Ravindu Silva</strong> - Executive Chef<br>
+                    <em>Trained in traditional Sri Lankan cuisine</em></p>
+                    
+                    <p><strong>Chamara Jayasinghe</strong> - Guest Relations<br>
+                    <em>Dedicated to exceptional customer service</em></p>
+                    
+                    <p><strong>Tharushi Wickramasinghe</strong> - Marketing Director<br>
+                    <em>Promoting Sri Lankan culture worldwide</em></p>
+                </div>
+            </div>
+
+            <div>
+                <form class="booking-form" id="contactForm" onsubmit="submitContact(event)">
+                    <div class="form-group">
+                        <label>Your Name *</label>
+                        <input type="text" required placeholder="Enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address *</label>
+                        <input type="email" required placeholder="your.email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" placeholder="+94 XX XXX XXXX">
+                    </div>
+                    <div class="form-group">
+                        <label>Inquiry Type</label>
+                        <select>
+                            <option>General Inquiry</option>
+                            <option>Restaurant Reservation</option>
+                            <option>Villa Booking</option>
+                            <option>Event Planning</option>
+                            <option>Catering Services</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Message *</label>
+                        <textarea rows="5" required placeholder="Tell us about your inquiry..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Sri Lankan Tasty Food - Restaurant and Villas. All rights reserved.</p>
+        <p>Experience authentic Sri Lankan cuisine and hospitality</p>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <span style="cursor: pointer; font-size: 1.5rem;" onclick="toggleCart()">&times;</span>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p style="text-align: center; color: #666; padding: 2rem;">Your cart is empty</p>
+        </div>
+        <div class="cart-total">
+            Total: <span id="cartTotalAmount">LKR 0</span>
+        </div>
+        <div style="padding: 1rem;">
+            <button class="btn btn-primary" style="width: 100%;" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
